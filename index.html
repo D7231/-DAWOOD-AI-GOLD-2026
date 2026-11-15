@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DAWOOD AI GOLD</title>
+<style>
+body{background:#101827;color:white;font-family:tahoma;text-align:center;padding:15px}
+.box{background:#1d293b;padding:18px;margin:12px;border-radius:14px}
+h1{color:#ffc107}
+button{padding:13px;background:#ffc107;border:0;border-radius:9px;font-weight:bold}
+input{padding:12px;width:80%;margin:8px;border-radius:8px}
+.green{color:#00e676}.red{color:#ff5252}
+</style>
+</head>
+<body>
+<h1>🤖 DAWOOD AI GOLD</h1>
+<h3>سیستم هوشمند تحلیل طلا</h3>
+<div class="box">
+<h3>قیمت لحظه‌ای XAUUSD</h3>
+<input id="price" type="number" placeholder="قیمت طلا را وارد کن">
+<button onclick="analyze()">تحلیل بازار</button>
+</div>
+<div class="box" id="result">
+منتظر دریافت قیمت هستیم
+</div>
+<script>
+function analyze(){
+let p=Number(document.getElementById("price").value);
+let r=document.getElementById("result");
+if(!p||p<=0){r.innerHTML="قیمت معتبر وارد کن";return}
+r.innerHTML="قیمت ثبت شد: "+p+
+"<br><br>برای صدور سیگنال معتبر، داده‌های کندلی و تأیید روند لازم است."+
+"<br><br>این نسخه هنوز به بازار زنده متصل نیست.";
+}
+</script>
+</body>
+</html>
