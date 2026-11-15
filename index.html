@@ -5,34 +5,113 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DAWOOD AI GOLD</title>
 <style>
-body{background:#101827;color:white;font-family:tahoma;text-align:center;padding:15px}
-.box{background:#1d293b;padding:18px;margin:12px;border-radius:14px}
-h1{color:#ffc107}
-button{padding:13px;background:#ffc107;border:0;border-radius:9px;font-weight:bold}
-input{padding:12px;width:80%;margin:8px;border-radius:8px}
-.green{color:#00e676}.red{color:#ff5252}
+body{
+background:#101827;
+color:white;
+font-family:tahoma;
+text-align:center;
+margin:0;
+padding:15px;
+}
+h1{color:#f5c542}
+.box{
+background:#1d293b;
+padding:15px;
+margin:12px auto;
+border-radius:14px;
+max-width:600px;
+}
+button{
+background:#e6b936;
+border:0;
+padding:13px 25px;
+border-radius:9px;
+font-weight:bold;
+}
+input{
+padding:12px;
+width:75%;
+border-radius:8px;
+border:0;
+margin:8px;
+}
+.green{color:#00e676}
+.red{color:#ff5252}
+iframe{
+width:100%;
+height:420px;
+border:0;
+}
 </style>
 </head>
 <body>
-<h1>🤖 DAWOOD AI GOLD</h1>
+
+<h1>🥇 DAWOOD AI GOLD</h1>
 <h3>سیستم هوشمند تحلیل طلا</h3>
+
 <div class="box">
-<h3>قیمت لحظه‌ای XAUUSD</h3>
-<input id="price" type="number" placeholder="قیمت طلا را وارد کن">
-<button onclick="analyze()">تحلیل بازار</button>
+<h2> XAUUSD </h2>
+<p>نمودار زنده طلا</p>
+<div class="tradingview-widget-container">
+<div id="tradingview_chart"></div>
 </div>
-<div class="box" id="result">
-منتظر دریافت قیمت هستیم
 </div>
+
+<div class="box">
+<h3>تحلیل تکنیکال</h3>
+<div class="tradingview-widget-container">
+<div id="technical-analysis"></div>
+</div>
+</div>
+
+<div class="box">
+<h3>مدیریت معاملات</h3>
+<p>قیمت ورود پیشنهادی خود را وارد کنید</p>
+<input id="price" type="number" step="0.01"
+placeholder="قیمت طلا">
+<button onclick="calculate()">محاسبه سطوح</button>
+<div id="result"></div>
+</div>
+
+<div class="box">
+<h3>سیستم داود</h3>
+<p>تایم‌فریم اصلی: 5 دقیقه</p>
+<p>تأیید روند: 15 و 30 دقیقه</p>
+<p>استراتژی: شکست + پولبک + تأیید</p>
+<p class="green">مدیریت ریسک فعال</p>
+</div>
+
 <script>
-function analyze(){
+function calculate(){
 let p=Number(document.getElementById("price").value);
-let r=document.getElementById("result");
-if(!p||p<=0){r.innerHTML="قیمت معتبر وارد کن";return}
-r.innerHTML="قیمت ثبت شد: "+p+
-"<br><br>برای صدور سیگنال معتبر، داده‌های کندلی و تأیید روند لازم است."+
-"<br><br>این نسخه هنوز به بازار زنده متصل نیست.";
+if(!p || p<=0){
+alert("قیمت را وارد کن");
+return;
+}
+document.getElementById("result").innerHTML=
+"<hr><h3>قیمت مرجع: "+p+"</h3>"+
+"<p>حد ضرر نمونه BUY: "+(p-3).toFixed(2)+"</p>"+
+"<p>هدف اول: "+(p+1).toFixed(2)+"</p>"+
+"<p>هدف دوم: "+(p+2).toFixed(2)+"</p>"+
+"<p>هدف سوم: "+(p+3).toFixed(2)+"</p>"+
+"<p>این سطوح نمونه‌اند، نه سیگنال معاملاتی.</p>";
 }
 </script>
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+<script>
+new TradingView.widget({
+"width":"100%",
+"height":420,
+"symbol":"OANDA:XAUUSD",
+"interval":"5",
+"timezone":"Europe/Berlin",
+"theme":"dark",
+"style":"1",
+"locale":"en",
+"container_id":"tradingview_chart"
+});
+</script>
+
 </body>
 </html>
